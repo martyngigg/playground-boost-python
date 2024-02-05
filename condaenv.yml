@@ -1,0 +1,10 @@
+name: playground-boost-python
+
+dependencies:
+  - boost=1.84
+  - clang_osx-64=16
+  - clangxx_osx-64=16
+  - llvm-openmp=16
+  - cmake=3.28.2
+  - ninja=1.11.1
+  - python=3.11

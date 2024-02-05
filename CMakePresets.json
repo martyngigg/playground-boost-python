@@ -1,0 +1,46 @@
+{
+  "version": 4,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "conda",
+      "description": "Inherited by all Conda-based, non-hidden presets",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "$env{CONDA_PREFIX}"
+      }
+    },
+    {
+      "name": "unix-debug",
+      "description": "Inherited by all Unix-like presets for debugging. Overrides Conda CXX flags for debugging",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS_DEBUG": "-g -O0",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "osx-default",
+      "description": "Inherited by all OSX configurations",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_FIND_FRAMEWORK": "LAST"
+      }
+    },
+    {
+      "name": "osx",
+      "description": "Default build options for a developer OSX build",
+      "inherits": [
+        "unix-debug",
+        "osx-default",
+        "conda"
+      ]
+    }
+  ]
+}
