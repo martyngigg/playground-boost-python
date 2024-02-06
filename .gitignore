@@ -1,1 +1,3 @@
 build/
+condaenv/
+venv/
