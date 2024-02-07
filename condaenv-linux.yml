@@ -1,0 +1,9 @@
+name: playground-boost-python
+
+dependencies:
+  - boost=1.84
+  - cmake=3.28.2
+  - gdb=12.1
+  - gxx_linux-64=12
+  - ninja=1.11.1
+  - python=3.11

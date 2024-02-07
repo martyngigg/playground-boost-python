@@ -41,6 +41,14 @@
         "osx-default",
         "conda"
       ]
+    },
+    {
+      "name": "linux",
+      "description": "Default build options for a developer Linux build",
+      "inherits": [
+        "unix-debug",
+        "conda"
+      ]
     }
   ]
 }

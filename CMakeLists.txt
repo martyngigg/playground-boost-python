@@ -3,17 +3,28 @@ project(playground-boost-python)
 
 # Use dynamic linking
 set(BUILD_SHARED_LIBS ON)
+
 # Remove optimizations
 foreach(_flag
     -O2
     -ftree-vectorize
     -fstack-protector-strong
     -fvisibility-inlines-hidden
+    -fno-plt
 )
   string(REPLACE ${_flag} "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 endforeach()
+
 # Add other debug flags
-set(CMAKE_CXX_FLAGS_DEBUG "-fno-inline-functions -glldb -fstandalone-debug ${CMAKE_CXX_FLAGS_DEBUG}")
+if(CMAKE_SYSTEM_NAME MATCHES Darwin)
+  set(_cxx_flags_debug_platform "-glldb -fstandalone-debug")
+elseif(CMAKE_SYSTEM_NAME MATCHES Linux)
+  set(_cxx_flags_debug_platform "-g3 -ggdb -fno-eliminate-unused-debug-symbols -fno-inline-small-functions")
+endif()
+set(CMAKE_CXX_FLAGS_DEBUG "-fno-inline-functions  ${_cxx_flags_debug_platform} ${CMAKE_CXX_FLAGS_DEBUG}")
+
+# We don't want auto_ptr...
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBOOST_NO_AUTO_PTR")
 
 # External dependencies (binary)
 find_package(Boost 1.84.0
