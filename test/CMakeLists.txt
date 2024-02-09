@@ -1,4 +1,4 @@
-add_library(polymorphism_ext polymorphism.cpp)
+add_library(polymorphism_ext SHARED polymorphism.cpp)
 set_target_properties(polymorphism_ext PROPERTIES PREFIX "")
 if(CMAKE_SYSTEM_NAME MATCHES Darwin)
   set_target_properties(polymorphism_ext PROPERTIES SUFFIX ".so")
